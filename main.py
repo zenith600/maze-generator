@@ -1,6 +1,7 @@
 import random
 import tkinter as tk
 
+# Dark color scheme
 BACKGROUND_COLOR = "#1e1e1e"
 WALL_COLOR = "#000000"
 PATH_COLOR = "#ffffff"
@@ -17,7 +18,7 @@ def generate_maze(width, height):
         current_x, current_y = stack[-1]
         neighbors = []
 
-
+        # Check the neighboring cells
         if current_x > 1 and maze[current_y][current_x - 2] == 1:
             neighbors.append((current_x - 2, current_y))
         if current_x < width - 2 and maze[current_y][current_x + 2] == 1:
@@ -67,35 +68,35 @@ def generate_button_clicked():
         pass
 
 
-
+# Create the main window
 window = tk.Tk()
 window.title("Maze Generator")
 window.configure(bg=BACKGROUND_COLOR)
 
-
+# Create the canvas for drawing the maze
 cell_size = 20
 canvas_width = 600
 canvas_height = 600
 canvas = tk.Canvas(window, width=canvas_width, height=canvas_height, bg=BACKGROUND_COLOR, highlightthickness=0)
 canvas.pack()
 
-
+# Create the maze generation controls
 controls_frame = tk.Frame(window, bg=BACKGROUND_COLOR)
 controls_frame.pack(pady=10)
 
 width_label = tk.Label(controls_frame, text="Width:", bg=BACKGROUND_COLOR, fg=TEXT_COLOR)
-width_label.grid(row=0, column=0, padx=5, pady=5)
+width_label.pack(side=tk.LEFT, padx=5, pady=5)
 width_entry = tk.Entry(controls_frame)
-width_entry.grid(row=0, column=1, padx=5, pady=5)
+width_entry.pack(side=tk.LEFT, padx=5, pady=5)
 
 height_label = tk.Label(controls_frame, text="Height:", bg=BACKGROUND_COLOR, fg=TEXT_COLOR)
-height_label.grid(row=1, column=0, padx=5, pady=5)
+height_label.pack(side=tk.LEFT, padx=5, pady=5)
 height_entry = tk.Entry(controls_frame)
-height_entry.grid(row=1, column=1, padx=5, pady=5)
+height_entry.pack(side=tk.LEFT, padx=5, pady=5)
 
 generate_button = tk.Button(controls_frame, text="Generate Maze", command=generate_button_clicked,
                             bg=BACKGROUND_COLOR, fg=TEXT_COLOR)
-generate_button.grid(row=2, column=0, columnspan=2, padx=5, pady=5)
+generate_button.pack(pady=10)
 
-
+# Start the GUI main loop
 window.mainloop()
